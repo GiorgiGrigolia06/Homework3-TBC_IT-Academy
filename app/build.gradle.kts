@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.homework3_tbc_it_academy"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.homework3_tbc_it_academy"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
