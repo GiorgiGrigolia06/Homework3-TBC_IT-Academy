@@ -15,19 +15,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        validateInputOnFocusChange(binding.emailInputEditText, viewModel::validateEmail)
-        validateInputOnFocusChange(binding.usernameInputEditText, viewModel::validateUsername)
-        validateInputOnFocusChange(binding.firstNameInputEditText, viewModel::validateFirstName)
-        validateInputOnFocusChange(binding.lastNameInputEditText, viewModel::validateLastName)
-        validateInputOnFocusChange(binding.ageInputEditText, viewModel::validateAge)
-
         viewModel.uiState.observe(this) {
-            with(binding) {
-                emailInput.helperText = it.emailValidation
-                username.helperText = it.usernameValidation
-                firstName.helperText = it.firstNameValidation
-                lastName.helperText = it.lastNameValidation
-                age.helperText = it.ageValidation
+            binding.apply {
+                emailInput.helperText = it.emailValidationText
+                username.helperText = it.usernameValidationText
+                firstName.helperText = it.firstNameValidationText
+                lastName.helperText = it.lastNameValidationText
+                age.helperText = it.ageValidationText
             }
         }
 
@@ -37,27 +31,20 @@ class MainActivity : AppCompatActivity() {
             validateInputOnSaveClick(binding.firstNameInputEditText, viewModel::validateFirstName)
             validateInputOnSaveClick(binding.lastNameInputEditText, viewModel::validateLastName)
             validateInputOnSaveClick(binding.ageInputEditText, viewModel::validateAge)
+            currentFocus?.clearFocus()
         }
 
-        binding.clearButton.setOnClickListener {
-            with(binding) {
+        binding.clearButton.setOnLongClickListener {
+            binding.apply {
                 emailInputEditText.text?.clear()
                 usernameInputEditText.text?.clear()
                 firstNameInputEditText.text?.clear()
                 lastNameInputEditText.text?.clear()
                 ageInputEditText.text?.clear()
             }
-
+            currentFocus?.clearFocus()
             viewModel.clearInputFieldHelperTexts()
-        }
-    }
-}
-
-private fun validateInputOnFocusChange(input: TextInputEditText, validator: (String) -> Unit) {
-    input.setOnFocusChangeListener { _, hasFocus ->
-        if (!hasFocus) {
-            val text = input.text.toString()
-            validator(text)
+            true
         }
     }
 }

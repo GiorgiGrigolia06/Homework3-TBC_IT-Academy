@@ -5,15 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-data class ValidationUiState(
-    val emailValidation: String? = null,
-    val usernameValidation: String? = null,
-    val firstNameValidation: String? = null,
-    val lastNameValidation: String? = null,
-    val ageValidation: String? = null
-)
-
-class AppViewModel : ViewModel() {
+class AppViewModel: ViewModel() {
     private val _uiState = MutableLiveData<ValidationUiState>()
     val uiState: LiveData<ValidationUiState> = _uiState
 
@@ -24,41 +16,49 @@ class AppViewModel : ViewModel() {
     fun validateEmail(email: String) {
         val isValidEmail = Patterns.EMAIL_ADDRESS.matcher(email).matches()
         _uiState.value =
-            _uiState.value?.copy(emailValidation = if (isValidEmail) null else "Invalid Email Address")
+            _uiState.value?.copy(emailValidationText = if (isValidEmail) null else "Invalid E-Mail Address.")
     }
 
     fun validateUsername(username: String) {
-        val isValidUsername = username.length >= 10
+        val isValidUsername = username.isNotBlank() && username.length >= MIN_USERNAME_LENGTH
         _uiState.value =
-            _uiState.value?.copy(usernameValidation = if (!isValidUsername) "Username should contain at least 10 characters" else null)
+            _uiState.value?.copy(usernameValidationText = if (isValidUsername) null else "Username should contain at least 10 characters.")
     }
 
     fun validateFirstName(firstName: String) {
-        val isValidName = firstName.isNotEmpty()
+        val isValidName = firstName.isNotBlank() && firstName.matches(Regex("^[A-Za-z]*$"))
         _uiState.value =
-            _uiState.value?.copy(firstNameValidation = if (!isValidName) "First name should contain at least 1 character" else null)
+            _uiState.value?.copy(firstNameValidationText = if (isValidName) null else "First name should contain at least 1 alphabetic character. Numbers are not allowed.")
     }
 
     fun validateLastName(lastName: String) {
-        val isValidName = lastName.isNotEmpty()
+        val isValidName = lastName.isNotBlank() && lastName.matches(Regex("^[A-Za-z]*$"))
         _uiState.value =
-            _uiState.value?.copy(lastNameValidation = if (!isValidName) "Last name should contain at least 1 character" else null)
+            _uiState.value?.copy(lastNameValidationText = if (isValidName) null else "Last name should contain at least 1 alphabetic character. Numbers are not allowed.")
     }
 
     fun validateAge(age: String) {
         val ageToInt = age.toIntOrNull()
         val isValidAge = when {
             ageToInt == null -> false
-            ageToInt in 0..130 -> true
-            age.startsWith("0") && age.length > 1 -> false
+            ageToInt in (MIN_AGE_VALUE..MAX_AGE_VALUE) -> true
+            age.startsWith(INVALID_AGE_VALIDATOR_PREFIX) && age.length > INVALID_AGE_VALIDATOR_LENGTH -> false
             else -> false
         }
         _uiState.value =
-            _uiState.value?.copy(ageValidation = if (isValidAge) null else "Please type in a valid number")
+            _uiState.value?.copy(ageValidationText = if (isValidAge) null else "Please type in a valid number.")
     }
 
     fun clearInputFieldHelperTexts() {
         _uiState.value = ValidationUiState()
+    }
+
+    companion object {
+        const val MIN_USERNAME_LENGTH = 3
+        const val MIN_AGE_VALUE = 0
+        const val MAX_AGE_VALUE = 130
+        const val INVALID_AGE_VALIDATOR_PREFIX = "0"
+        const val INVALID_AGE_VALIDATOR_LENGTH = 1
     }
 }
 
