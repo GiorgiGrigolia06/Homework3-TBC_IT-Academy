@@ -18,6 +18,7 @@
         android:textSize="@dimen/header_font_size"
         android:textStyle="bold" />
 
+    <!-- E-Mail -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_input"
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         android:layout_marginBottom="@dimen/item_bottom_margin"
         android:hint="@string/email"
         app:endIconMode="clear_text"
+        app:helperTextTextColor="@android:color/holo_red_light"
         app:startIconContentDescription="@string/email"
         app:startIconDrawable="@drawable/baseline_email_24">
 
@@ -37,6 +39,7 @@
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Username -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         android:layout_width="match_parent"
@@ -57,6 +60,7 @@
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- First Name -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/first_name"
         android:layout_width="match_parent"
@@ -64,6 +68,7 @@
         android:layout_marginBottom="@dimen/item_bottom_margin"
         android:hint="@string/first_name"
         app:endIconMode="clear_text"
+        app:helperTextTextColor="@android:color/holo_red_light"
         app:startIconContentDescription="@string/first_name"
         app:startIconDrawable="@drawable/baseline_pen_24">
 
@@ -76,6 +81,7 @@
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Last Name -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/last_name"
         android:layout_width="match_parent"
@@ -83,6 +89,7 @@
         android:layout_marginBottom="@dimen/item_bottom_margin"
         android:hint="@string/last_name"
         app:endIconMode="clear_text"
+        app:helperTextTextColor="@android:color/holo_red_light"
         app:startIconContentDescription="@string/last_name"
         app:startIconDrawable="@drawable/baseline_pen_24">
 
@@ -95,6 +102,7 @@
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Age -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/age"
         android:layout_width="match_parent"
@@ -102,6 +110,7 @@
         android:layout_marginBottom="@dimen/item_bottom_margin"
         android:hint="@string/age"
         app:endIconMode="clear_text"
+        app:helperTextTextColor="@android:color/holo_red_light"
         app:startIconContentDescription="@string/age"
         app:startIconDrawable="@drawable/baseline_cake_24">
 
