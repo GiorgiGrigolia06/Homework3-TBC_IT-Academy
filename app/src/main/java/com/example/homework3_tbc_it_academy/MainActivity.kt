@@ -1,8 +1,9 @@
 package com.example.homework3_tbc_it_academy
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.homework3_tbc_it_academy.databinding.ActivityMainBinding
 import com.google.android.material.textfield.TextInputEditText
 
@@ -25,16 +26,38 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         binding.saveButton.setOnClickListener {
+            currentFocus?.clearFocus()
             validateInputOnSaveClick(binding.emailInputEditText, viewModel::validateEmail)
             validateInputOnSaveClick(binding.usernameInputEditText, viewModel::validateUsername)
             validateInputOnSaveClick(binding.firstNameInputEditText, viewModel::validateFirstName)
             validateInputOnSaveClick(binding.lastNameInputEditText, viewModel::validateLastName)
             validateInputOnSaveClick(binding.ageInputEditText, viewModel::validateAge)
-            currentFocus?.clearFocus()
+
+            if (
+                viewModel.uiState.value?.isValidEmail == true &&
+                viewModel.uiState.value?.isValidUsername == true &&
+                viewModel.uiState.value?.isValidFirstName == true &&
+                viewModel.uiState.value?.isValidLastName == true &&
+                viewModel.uiState.value?.isValidAge == true
+            ) {
+                val intent = Intent(this, ProfileInfoActivity::class.java)
+
+                intent.putExtra(EMAIL, binding.emailInputEditText.text.toString())
+                intent.putExtra(USERNAME, binding.usernameInputEditText.text.toString())
+                intent.putExtra(
+                    FULL_NAME,
+                    "${binding.firstNameInputEditText.text.toString()} ${binding.lastNameInputEditText.text.toString()}"
+                )
+                intent.putExtra(AGE, binding.ageInputEditText.text.toString())
+
+                startActivity(intent)
+            }
         }
 
         binding.clearButton.setOnLongClickListener {
+            currentFocus?.clearFocus()
             binding.apply {
                 emailInputEditText.text?.clear()
                 usernameInputEditText.text?.clear()
@@ -42,10 +65,16 @@ class MainActivity : AppCompatActivity() {
                 lastNameInputEditText.text?.clear()
                 ageInputEditText.text?.clear()
             }
-            currentFocus?.clearFocus()
-            viewModel.clearInputFieldHelperTexts()
+            viewModel.clearFields()
             true
         }
+    }
+
+    companion object {
+        const val EMAIL = "email"
+        const val USERNAME = "username"
+        const val FULL_NAME = "fullName"
+        const val AGE = "age"
     }
 }
 

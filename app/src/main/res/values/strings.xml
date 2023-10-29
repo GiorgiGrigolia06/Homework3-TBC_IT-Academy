@@ -13,4 +13,10 @@
     <string name="first_name_helper_text">First name should contain at least 1 character</string>
     <string name="last_name_helper_text">"Last name should contain at least 1 character</string>
     <string name="age_helper_text">"Please type in a valid number</string>
+
+    <string name="email_profile_view">Email: %s</string>
+    <string name="username_profile_view">Username: %s</string>
+    <string name="full_name_profile_view">Name: %s</string>
+    <string name="age_profile_view">Age: %s</string>
+    <string name="again">Again</string>
 </resources>
