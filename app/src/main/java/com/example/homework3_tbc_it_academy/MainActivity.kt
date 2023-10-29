@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Observes input fields and if some of the inputs are not validated shows the message.
         viewModel.uiState.observe(this) {
             binding.apply {
                 emailInput.helperText = it.emailValidationText
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
+        // Validates all input fields using different validation functions from view model.
         binding.saveButton.setOnClickListener {
             currentFocus?.clearFocus()
             validateInputOnSaveClick(binding.emailInputEditText, viewModel::validateEmail)
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             validateInputOnSaveClick(binding.lastNameInputEditText, viewModel::validateLastName)
             validateInputOnSaveClick(binding.ageInputEditText, viewModel::validateAge)
 
+            // If all inputs are validated, saves them, and navigates to another activity, which shows the user input.
             if (
                 viewModel.uiState.value?.isValidEmail == true &&
                 viewModel.uiState.value?.isValidUsername == true &&
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
                 viewModel.uiState.value?.isValidAge == true
             ) {
                 val intent = Intent(this, ProfileInfoActivity::class.java)
-
                 intent.putExtra(EMAIL, binding.emailInputEditText.text.toString())
                 intent.putExtra(USERNAME, binding.usernameInputEditText.text.toString())
                 intent.putExtra(
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Clears every input and, if present, validation message.
         binding.clearButton.setOnLongClickListener {
             currentFocus?.clearFocus()
             binding.apply {

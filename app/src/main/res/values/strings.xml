@@ -8,11 +8,12 @@
     <string name="age">Age</string>
     <string name="save">Save</string>
     <string name="clear">Clear</string>
-    <string name="email_helper_text">"Invalid Email Address"</string>
-    <string name="username_helper_text">Username should contain at least 10 characters</string>
-    <string name="first_name_helper_text">First name should contain at least 1 character</string>
-    <string name="last_name_helper_text">"Last name should contain at least 1 character</string>
-    <string name="age_helper_text">"Please type in a valid number</string>
+
+    <string name="email_helper_text">Invalid E-Mail Address.</string>
+    <string name="username_helper_text">Username should contain at least 10 characters without empty spaces.</string>
+    <string name="first_name_helper_text">First name should contain at least 1 alphabetic character. Numbers are not allowed.</string>
+    <string name="last_name_helper_text">Last name should contain at least 1 character. Numbers are not allowed.</string>
+    <string name="age_helper_text">Please type in a valid number.</string>
 
     <string name="email_profile_view">Email: %s</string>
     <string name="username_profile_view">Username: %s</string>
