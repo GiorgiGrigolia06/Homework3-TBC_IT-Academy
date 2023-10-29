@@ -1,11 +1,12 @@
 package com.example.homework3_tbc_it_academy
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.homework3_tbc_it_academy.databinding.ActivityMainBinding
-import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,11 +31,11 @@ class MainActivity : AppCompatActivity() {
         // Validates all input fields using different validation functions from view model.
         binding.saveButton.setOnClickListener {
             currentFocus?.clearFocus()
-            validateInputOnSaveClick(binding.emailInputEditText, viewModel::validateEmail)
-            validateInputOnSaveClick(binding.usernameInputEditText, viewModel::validateUsername)
-            validateInputOnSaveClick(binding.firstNameInputEditText, viewModel::validateFirstName)
-            validateInputOnSaveClick(binding.lastNameInputEditText, viewModel::validateLastName)
-            validateInputOnSaveClick(binding.ageInputEditText, viewModel::validateAge)
+            viewModel.validateEmail(binding.emailInputEditText.text.toString())
+            viewModel.validateUsername(binding.usernameInputEditText.text.toString())
+            viewModel.validateFirstName(binding.firstNameInputEditText.text.toString())
+            viewModel.validateLastName(binding.lastNameInputEditText.text.toString())
+            viewModel.validateAge(binding.ageInputEditText.text.toString())
 
             // If all inputs are validated, saves them, and navigates to another activity, which shows the user input.
             if (
@@ -70,6 +71,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.clearFields()
             true
         }
+
+        // Clears focus and hides keyboard if click is performed outside of one of the inputs.
+        binding.linearLayout.setOnClickListener {
+            currentFocus?.clearFocus()
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
+        }
     }
 
     companion object {
@@ -78,9 +86,4 @@ class MainActivity : AppCompatActivity() {
         const val FULL_NAME = "fullName"
         const val AGE = "age"
     }
-}
-
-private fun validateInputOnSaveClick(input: TextInputEditText, validator: (String) -> Unit) {
-    val text = input.text.toString()
-    validator(text)
 }
