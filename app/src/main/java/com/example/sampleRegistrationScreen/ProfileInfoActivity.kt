@@ -1,8 +1,8 @@
-package com.example.homework3_tbc_it_academy
+package com.example.sampleRegistrationScreen
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.homework3_tbc_it_academy.databinding.ActivityProfileInfoBinding
+import com.example.sampleRegistrationScreen.databinding.ActivityProfileInfoBinding
 
 class ProfileInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileInfoBinding

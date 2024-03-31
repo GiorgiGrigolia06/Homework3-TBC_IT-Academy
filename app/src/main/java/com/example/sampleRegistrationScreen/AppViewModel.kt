@@ -1,4 +1,4 @@
-package com.example.homework3_tbc_it_academy
+package com.example.sampleRegistrationScreen
 
 import android.app.Application
 import android.util.Patterns

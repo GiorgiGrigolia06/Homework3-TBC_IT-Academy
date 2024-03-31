@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.homework3_tbc_it_academy"
+    namespace = "com.example.sampleRegistrationScreen"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.homework3_tbc_it_academy"
+        applicationId = "com.example.sampleRegistrationScreen"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

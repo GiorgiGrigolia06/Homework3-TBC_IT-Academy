@@ -1,4 +1,4 @@
-package com.example.homework3_tbc_it_academy
+package com.example.sampleRegistrationScreen
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.homework3_tbc_it_academy.databinding.ActivityMainBinding
+import com.example.sampleRegistrationScreen.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

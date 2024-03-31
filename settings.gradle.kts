@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Homework3-TBC_IT-Academy"
+rootProject.name = "sampleRegistrationScreen"
 include(":app")
  

@@ -1,4 +1,4 @@
-package com.example.homework3_tbc_it_academy
+package com.example.sampleRegistrationScreen
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.homework3_tbc_it_academy", appContext.packageName)
+        assertEquals("com.example.sampleRegistrationScreen", appContext.packageName)
     }
 }

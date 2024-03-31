@@ -1,5 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.Homework3TBC_ITAcademy" parent="Theme.Material3.DayNight.NoActionBar">
+<resources>
+    <style name="Base.Theme.sampleRegistrationScreen" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -27,5 +27,5 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
     </style>
-    <style name="Theme.Homework3TBC_ITAcademy" parent="Base.Theme.Homework3TBC_ITAcademy" />
+    <style name="Theme.sampleRegistrationScreen" parent="Base.Theme.sampleRegistrationScreen" />
 </resources>
